@@ -47,7 +47,9 @@ fi
 
 lb build
 
-ISO="$ROOT_DIR/techos-1.0-unstable-amd64.hybrid.iso"
+IMAGE_NAME="$(sed -n 's/^LB_IMAGE_NAME="\(.*\)"$/\1/p' config/common)"
+ARCH="$(dpkg --print-architecture)"
+ISO="$ROOT_DIR/${IMAGE_NAME}-${ARCH}.hybrid.iso"
 if [ -f "$ISO" ]; then
     sha256sum "$ISO" > "$ISO.sha256"
     echo "ISO created: $ISO"

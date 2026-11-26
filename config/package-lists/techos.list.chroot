@@ -6,7 +6,8 @@ systemd-sysv
 cinnamon
 lightdm
 network-manager
-network-manager-gnome
+network-manager-applet
+nm-connection-editor
 sudo
 xserver-xorg
 xinit
@@ -16,7 +17,8 @@ thunar
 thunar-volman
 gvfs
 udisks2
-policykit-1
+polkitd
+pkexec
 fonts-noto
 fonts-noto-color-emoji
 locales

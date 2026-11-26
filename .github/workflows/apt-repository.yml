@@ -24,7 +24,7 @@ jobs:
       - name: Install packaging tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y dpkg-dev python3-tk
+          sudo apt-get install -y dpkg-dev apt-utils python3-tk
 
       - name: Build TechOS Welcome package
         run: sh scripts/build-deb.sh

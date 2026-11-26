@@ -1,0 +1,16 @@
+Package: techos-welcome
+Version: 0.1.0
+Architecture: all
+Maintainer: TechOS Project <maintainers@techos.invalid>
+Depends: python3, python3-tk
+Filename: pool/main/techos-welcome_0.1.0_all.deb
+Size: 2112
+MD5sum: be455fb4fe0a753047139c4ebedc6d8e
+SHA1: 848c6ab657581b9630f298a52993ef4e94276a46
+SHA256: 436e3c88b215e335d7d6bd3352b5c6d02c800d287b854dcaaf6ef7e3bf171614
+Section: x11
+Priority: optional
+Description: Welcome application for the TechOS Linux distribution
+ Initial experimental welcome screen for TechOS, including basic
+ system information and a link to the project repository.
+

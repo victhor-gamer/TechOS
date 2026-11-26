@@ -1,0 +1,46 @@
+name: Publish signed TechOS APT repository
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/**"
+      - "repository/techos-archive-keyring.gpg"
+      - ".github/workflows/publish-signed-apt.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "github-pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify signed repository metadata
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnupg
+          gpg --import repository/techos-archive-keyring.gpg
+          gpg --verify public/dists/unstable/InRelease
+          gpg --verify public/dists/unstable/Release.gpg public/dists/unstable/Release
+
+      - name: Upload signed repository to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

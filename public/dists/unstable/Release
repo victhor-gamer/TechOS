@@ -1,0 +1,25 @@
+Origin: TechOS
+Label: TechOS
+Suite: unstable
+Codename: unstable
+Architectures: amd64
+Components: main
+Description: Experimental APT repository for TechOS
+Date: Thu, 26 Nov 2026 17:05:10 +0000
+Date: Thu, 26 Nov 2026 17:05:10 +0000
+MD5Sum:
+ 2134444bf1f48dda999b59be489124a4              230 Release
+ 55a124d646a08b1b21efdeaf585cee38              586 main/binary-amd64/Packages
+ bd771a165a3d2bf586a7c28bff40dcb7              428 main/binary-amd64/Packages.gz
+SHA1:
+ da39098b5347410028d96e242b0fa3537b5ca8a8              230 Release
+ 73857686e73e577a8ec357c88867d9a046611c85              586 main/binary-amd64/Packages
+ 15cb30d2518058a6f4b22e023417ab0df9b926e7              428 main/binary-amd64/Packages.gz
+SHA256:
+ 3bea922245bf01848fce550d39e367934b2fdc9ac2ae350ce210de3dff429aaf              230 Release
+ 7177dd696d9dfe2e09cce2ee7b6879cbd04aaf65ab55e6fd9e10aaf5bdab84b9              586 main/binary-amd64/Packages
+ b4bc47f2e131e15d8a5215ffd3e5d531a11fba87794bb61e1f7e0a70b2f4fe0b              428 main/binary-amd64/Packages.gz
+SHA512:
+ da197b3b3d3111935ccdc9cd16be845f47381d52713f4b65dfb75512fad5e635f1c2ae0092b32f6b2eebc2ae1a6d04904fbfe5d2155b7f509b637ad00c7ea2c9              230 Release
+ d039f706f0f09cd16aaf70284749300f669b31a6c1d670a51b0d5e38c39fc612d5e211817b525aab058a29cce86f4bbaa23c08ab18fda7a8d5bdf7c797af5186              586 main/binary-amd64/Packages
+ 9ce6e2bd6e3b8151fba39a13d59156092690470312e5f4b03b24b016f32eb4a4829124ea7f2a437cbdd568dcdf57403023d1395ff266bb55240dc08d89ed4730              428 main/binary-amd64/Packages.gz

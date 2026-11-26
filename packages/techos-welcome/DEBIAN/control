@@ -1,0 +1,10 @@
+Package: techos-welcome
+Version: 0.1.0
+Section: x11
+Priority: optional
+Architecture: all
+Maintainer: TechOS Project <maintainers@techos.invalid>
+Depends: python3, python3-tk
+Description: Welcome application for the TechOS Linux distribution
+ Initial experimental welcome screen for TechOS, including basic
+ system information and a link to the project repository.

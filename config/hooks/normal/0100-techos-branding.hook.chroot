@@ -1,0 +1,28 @@
+#!/bin/sh
+set -e
+
+cat > /usr/lib/os-release <<'OSRELEASE'
+NAME="TechOS"
+PRETTY_NAME="TechOS 1.0 Unstable"
+ID=techos
+ID_LIKE=debian
+VERSION="1.0 Unstable"
+VERSION_ID="1.0"
+VERSION_CODENAME=unstable
+DEBIAN_CODENAME=forky
+HOME_URL="https://victhor-gamer.github.io/TechOS/"
+DOCUMENTATION_URL="https://github.com/victhor-gamer/TechOS"
+SUPPORT_URL="https://github.com/victhor-gamer/TechOS/issues"
+BUG_REPORT_URL="https://github.com/victhor-gamer/TechOS/issues"
+OSRELEASE
+
+cat > /etc/issue <<'ISSUE'
+TechOS 1.0 Unstable \n \l
+ISSUE
+printf '%s\n' 'techos' > /etc/hostname
+
+mkdir -p /etc/lightdm/lightdm.conf.d
+cat > /etc/lightdm/lightdm.conf.d/10-techos.conf <<'LIGHTDM'
+[Seat:*]
+user-session=cinnamon
+LIGHTDM

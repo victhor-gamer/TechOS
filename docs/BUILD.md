@@ -1,47 +1,39 @@
 # TechOS Build System
 
-Official build documentation for TechOS.
-
 ## Target
 
-- Base distribution: Debian
+- Base: Debian 13/Forky
 - Architecture: AMD64 (x86_64)
-- Desktop environment: Cinnamon
-- Init system: systemd
+- Desktop: Cinnamon with LightDM
+- Init: systemd
 - Package format: DEB
+- Image: hybrid ISO (BIOS and UEFI boot)
+- Installer: Debian Installer in live mode
 
-## Current build tooling
+## Build requirements
 
-The repository currently includes an initial Debian package build script for TechOS Welcome:
+Build on a Debian/Forky AMD64 system with `live-build`, `debootstrap`, `xorriso`, `squashfs-tools`, `grub-efi-amd64-bin`, `isolinux` and working internet access. Building requires root privileges because live-build creates and configures a chroot.
+
+## Configure
 
 ```sh
-sh scripts/build-deb.sh
+./scripts/configure-iso.sh
 ```
 
-It creates a local `.deb` package under `build/`. It does not build a complete operating-system ISO.
+This creates the live-build configuration, includes the TechOS Welcome DEB, and prepares the TechOS branding hook.
 
-## Future ISO build process
+## Build the ISO
 
-The planned ISO pipeline is:
+```sh
+sudo ./scripts/build-iso.sh
+```
 
-1. Select and pin a Debian release.
-2. Prepare a reproducible Debian AMD64 build environment.
-3. Install the selected base and desktop packages.
-4. Apply TechOS configuration and branding.
-5. Include tested TechOS packages.
-6. Generate a bootable ISO.
-7. Test boot and installation in a virtual machine.
-8. Publish checksums and release notes.
+The build produces `techos-1.0-unstable-amd64.hybrid.iso` and a SHA-256 checksum file in the project root. Build time and disk usage depend on the mirror and selected packages.
 
-## Candidate tools
+## Included system
 
-- live-build
-- debootstrap
-- xorriso
-- APT
+The initial image uses the Debian Forky base, Cinnamon, LightDM, NetworkManager, common desktop utilities, live-boot and the Debian Installer. The branding hook sets the TechOS operating-system identity and Cinnamon as the LightDM session. The TechOS Welcome application is installed from the project's DEB package.
 
-The final toolchain has not yet been selected.
+## Current limitations
 
-## Status
-
-The full TechOS ISO build system is not implemented.
+TechOS 1.0 Unstable is an early experimental build. It is not yet a polished or fully tested distribution. Test the ISO in a virtual machine before installing it on physical hardware. Hardware support, installer behavior, branding, upgrades and package signing still require validation.

@@ -2,6 +2,11 @@
 /build/
 /dist/
 /*.deb
+/*.iso
+/*.iso.sha256
+/binary/
+/chroot/
+/cache/
 
 # Python
 __pycache__/
@@ -12,3 +17,4 @@ __pycache__/
 *~
 *.swp
 .DS_Store
+.build

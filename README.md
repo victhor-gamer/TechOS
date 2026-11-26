@@ -16,7 +16,7 @@ TechOS is an experimental Debian-based Linux distribution project.
 
 **TechOS 1.0 Unstable — early development.**
 
-The repository currently contains project documentation and the first TechOS Welcome application prototype. A complete operating-system ISO, installer, and dedicated APT repository do not exist yet.
+The repository contains the TechOS Welcome application, a signed APT repository, and an initial live-build configuration for a bootable Debian Forky/Cinnamon ISO with the Debian Installer. The ISO is experimental and still requires a successful build and VM testing.
 
 ## First application: TechOS Welcome
 
@@ -31,6 +31,8 @@ Build its Debian package (requires `dpkg-deb`):
 ```sh
 sh scripts/build-deb.sh
 ```
+
+Configure and build the experimental ISO with `./scripts/configure-iso.sh` followed by `sudo ./scripts/build-iso.sh`. See [Build Guide](docs/BUILD.md).
 
 See [Development Guide](docs/DEVELOPMENT.md) and [Testing Guide](docs/TESTING.md).
 

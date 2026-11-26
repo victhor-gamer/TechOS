@@ -1,30 +1,62 @@
-# TechOS archive signing key
+# Assinatura GPG do repositório TechOS
 
-TechOS uses a dedicated OpenPGP key managed with GNU Privacy Guard (GnuPG).
+O TechOS usa uma chave OpenPGP própria para que o APT possa verificar a autenticidade dos metadados do repositório.
 
-## Create the key
+## Modelo de segurança
 
-On a trusted maintainer computer, run:
+- A chave privada fica somente no computador do responsável pela publicação.
+- A chave privada e sua senha nunca devem ser colocadas no GitHub, em arquivos do projeto ou em conversas.
+- O GitHub Actions apenas monta o repositório APT sem assinatura e disponibiliza um artefato temporário.
+- O responsável baixa o artefato, assina localmente e só então publica os arquivos assinados.
+- A chave pública pode ser distribuída junto do repositório; clientes usam `signed-by` para confiar apenas nessa chave.
+
+Peça ajuda a um responsável de confiança para criar e guardar a chave. Faça uma cópia de segurança offline e protegida da chave privada.
+
+## 1. Criar a chave
+
+Em um computador confiável com GnuPG instalado:
 
 ```sh
 sudo apt install gnupg
 sh scripts/generate-archive-key.sh
 ```
 
-Choose RSA with at least 3072 bits (4096 recommended), and set a strong passphrase. Keep an offline backup of the private key. Do not commit it or put it in a public repository.
-
-## Configure GitHub Actions
-
-On the trusted maintainer computer, export the private key in ASCII-armored form:
+Escolha uma chave OpenPGP forte (RSA 4096 bits é uma opção compatível) e defina uma senha longa. Guarde o fingerprint exibido por:
 
 ```sh
-gpg --armor --export-secret-keys YOUR_KEY_ID
+gpg --fingerprint
 ```
 
-Add that output as repository Actions secret `TECHOS_GPG_PRIVATE_KEY`; add the passphrase as secret `TECHOS_GPG_PASSPHRASE`; add the long key ID from `gpg --list-secret-keys --keyid-format LONG` as Actions variable `TECHOS_GPG_KEY_ID`.
+Não compartilhe a chave privada nem sua senha.
 
-Never paste the private key or passphrase into a commit, issue, pull request, or chat. Ask a parent/guardian or trusted adult to help manage these publishing credentials. Restrict repository write access. For public releases, use a protected GitHub Environment with manual approval.
+## 2. Gerar o repositório
 
-The published public key is `techos-archive-keyring.gpg`. Clients must install it into a dedicated APT keyring and configure the source with `signed-by=/usr/share/keyrings/techos-archive-keyring.gpg`. Do not use `apt-key` or globally trust the repository.
+Envie as alterações para a branch `main`. O GitHub Actions criará o artefato `techos-apt-unsigned`. Ele não publica um repositório confiável ainda: falta a assinatura.
 
-Before public distribution, independently verify the public-key fingerprint through an official TechOS channel and document key rotation and revocation.
+Na página de Actions do GitHub, abra a execução concluída e baixe o artefato. Extraia seu conteúdo para a pasta `public/` na cópia local do projeto.
+
+## 3. Assinar localmente
+
+No computador que contém a chave privada, execute:
+
+```sh
+sh scripts/sign-apt-repo.sh
+```
+
+Informe o fingerprint ou ID da chave quando solicitado. O GnuPG poderá pedir a senha da chave. O script cria `InRelease`, `Release.gpg` e `techos-archive-keyring.gpg`.
+
+Nunca desative a proteção por senha para facilitar a automação.
+
+## 4. Publicar
+
+Publique o conteúdo da pasta `public/` somente depois de conferir a assinatura e os arquivos gerados. A publicação do conteúdo assinado deve ser feita por um responsável com acesso ao repositório. Configure o GitHub Pages para servir apenas a branch/pasta escolhida para os arquivos públicos.
+
+Antes de distribuir o repositório, verifique a assinatura em uma máquina de teste e confirme o fingerprint da chave pública por um canal oficial independente.
+
+## 5. Instalação pelos usuários
+
+Instale a chave pública em um keyring dedicado e configure a fonte APT com `signed-by=/usr/share/keyrings/techos-archive-keyring.gpg`. Não use `apt-key` e não torne essa chave confiável para todos os repositórios do sistema.
+
+## Limites
+
+A assinatura GPG confirma que os metadados foram assinados por quem controla a chave e ajuda a detectar alterações. Ela não garante que os pacotes sejam livres de bugs ou seguros. Proteja também a conta GitHub, revise alterações e documente rotação e revogação da chave.

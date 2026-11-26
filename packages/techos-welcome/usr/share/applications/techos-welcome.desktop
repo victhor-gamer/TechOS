@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=TechOS Welcome
+Comment=Welcome to the TechOS operating system
+Exec=techos-welcome
+Icon=computer
+Terminal=false
+Categories=System;Settings;
+StartupNotify=true

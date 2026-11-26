@@ -20,7 +20,7 @@ lb config \
     --bootloaders grub-efi,syslinux \
     --debian-installer live \
     --archive-areas main \
-    --apt-recommends true \
+    --apt-recommends false \
     --iso-application TechOS \
     --iso-publisher 'TechOS Project' \
     --iso-volume 'TECHOS_1_0_UNSTABLE' \

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#b9e9f8">
+  <meta name="description" content="TechOS — uma distribuição Linux experimental baseada em Debian, com identidade visual inspirada no Frutiger Aero.">
+  <title>TechOS — O futuro que o passado imaginou, continua.</title>
+  <style>
+    :root { color-scheme: light; --ink:#123b58; --blue:#087bb7; --glass:rgba(255,255,255,.58); }
+    * { box-sizing:border-box }
+    body { margin:0; min-height:100vh; color:var(--ink); font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif; background:linear-gradient(145deg,#dff8ff 0%,#a9e1f4 42%,#d9f5e9 100%); }
+    body:before { content:""; position:fixed; inset:0; pointer-events:none; opacity:.48; background:radial-gradient(ellipse at 15% 15%,#fff 0,transparent 34%),radial-gradient(ellipse at 85% 75%,#72d5ed 0,transparent 35%); }
+    main { position:relative; width:min(100% - 32px,1000px); margin:auto; padding:48px 0 28px }
+    header { display:flex; align-items:center; gap:14px; margin-bottom:54px }
+    .logo { display:grid; place-items:center; width:54px; height:54px; border-radius:18px; color:#fff; font-size:25px; font-weight:800; background:linear-gradient(145deg,#55c9ed,#087bb7); box-shadow:inset 0 2px 5px #ffffffb5,0 8px 20px #1676a344 }
+    .brand { font-weight:800; font-size:1.35rem; letter-spacing:.04em }
+    .hero { padding:clamp(28px,6vw,64px); border:1px solid #ffffffbd; border-radius:32px; background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(255,255,255,.35)); box-shadow:0 24px 70px #216b8730,inset 0 1px #fff; backdrop-filter:blur(18px) }
+    .eyebrow { color:#087bb7; font-weight:750; letter-spacing:.12em; text-transform:uppercase; font-size:.78rem }
+    h1 { margin:10px 0 14px; max-width:760px; font-size:clamp(2.5rem,7vw,5rem); line-height:1.02; letter-spacing:-.055em }
+    .subtitle { max-width:650px; font-size:1.12rem; color:#315c74 }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px }
+    a.button { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:10px 19px; border-radius:14px; text-decoration:none; font-weight:750; color:white; background:linear-gradient(180deg,#20a9dc,#0873b0); box-shadow:0 7px 18px #087bb733,inset 0 1px #ffffffa8 }
+    a.button.secondary { color:#125477; background:rgba(255,255,255,.72); border:1px solid #ffffff }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:20px }
+    .card { padding:22px; border-radius:22px; border:1px solid #ffffffbd; background:var(--glass); box-shadow:0 10px 30px #286c8520; backdrop-filter:blur(12px) }
+    h2 { margin:0 0 8px; font-size:1.12rem }
+    p { margin:0; color:#315c74 }
+    code { display:block; overflow-wrap:anywhere; margin-top:12px; padding:12px; border-radius:12px; background:#e9f8fc; color:#164b68; font-size:.88rem }
+    footer { padding:28px 8px 8px; text-align:center; color:#477187; font-size:.9rem }
+    @media(max-width:560px) { main{padding-top:25px} header{margin-bottom:30px} .hero{border-radius:24px} }
+  </style>
+</head>
+<body>
+  <main>
+    <header><div class="logo" aria-hidden="true">T</div><div class="brand">TechOS</div></header>
+    <section class="hero">
+      <div class="eyebrow">Linux • Debian-based • AMD64</div>
+      <h1>O futuro que o passado imaginou, continua.</h1>
+      <p class="subtitle">Um projeto experimental de sistema operacional Linux, construído sobre a base Debian e inspirado pela estética tecnológica do Frutiger Aero.</p>
+      <div class="actions">
+        <a class="button" href="dists/unstable/Release">Explorar repositório APT</a>
+        <a class="button secondary" href="https://github.com/victhor-gamer/TechOS">Ver projeto no GitHub</a>
+      </div>
+    </section>
+    <section class="grid" aria-label="Sobre o projeto">
+      <article class="card"><h2>Em desenvolvimento</h2><p>TechOS 1.0 Unstable está em fase inicial. O projeto já possui documentação e um protótipo do aplicativo TechOS Welcome.</p></article>
+      <article class="card"><h2>Repositório APT</h2><p>Metadados do repositório experimental, destinados à arquitetura AMD64, publicados com assinatura GPG.</p><code>deb [arch=amd64] https://victhor-gamer.github.io/TechOS unstable main</code></article>
+      <article class="card"><h2>Código aberto</h2><p>Acompanhe o desenvolvimento, consulte a documentação e contribua pelo repositório oficial no GitHub.</p></article>
+    </section>
+    <footer>TechOS 1.0 Unstable · Projeto experimental · GNU GPL v3.0</footer>
+  </main>
+</body>
+</html>

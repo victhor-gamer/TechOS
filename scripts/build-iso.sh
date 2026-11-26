@@ -45,6 +45,12 @@ path.write_text(source.replace(old, new))
 PY_PATCH
 fi
 
+# Debian Installer images are cached separately by live-build. A stale cache can
+# silently mix a Debian 13 installer kernel with a Debian 14 (Forky) live system.
+# Remove only those generated installer artifacts so live-build downloads the
+# current installer kernel/initrd from the configured Forky mirror.
+rm -rf cache/installer_debian-installer binary/install
+
 lb build
 
 IMAGE_NAME="$(sed -n 's/^LB_IMAGE_NAME="\(.*\)"$/\1/p' config/common)"

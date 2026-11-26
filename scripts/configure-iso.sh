@@ -19,6 +19,7 @@ lb config \
     --binary-images iso-hybrid \
     --bootloaders grub-efi,syslinux \
     --debian-installer live \
+    --loadlin false \
     --archive-areas main \
     --apt-recommends false \
     --iso-application TechOS \

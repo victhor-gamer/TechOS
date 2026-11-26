@@ -8,6 +8,7 @@ on:
       - "packages/**"
       - "scripts/build-deb.sh"
       - "scripts/build-apt-repo.sh"
+      - "scripts/sign-apt-repo.sh"
       - ".github/workflows/apt-repository.yml"
   workflow_dispatch:
 
@@ -30,13 +31,20 @@ jobs:
       - name: Install packaging tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y dpkg-dev python3-tk
+          sudo apt-get install -y dpkg-dev python3-tk gnupg
 
       - name: Build TechOS Welcome package
         run: sh scripts/build-deb.sh
 
       - name: Generate APT repository
         run: sh scripts/build-apt-repo.sh
+
+      - name: Sign APT repository
+        env:
+          TECHOS_GPG_PRIVATE_KEY: ${{ secrets.TECHOS_GPG_PRIVATE_KEY }}
+          TECHOS_GPG_PASSPHRASE: ${{ secrets.TECHOS_GPG_PASSPHRASE }}
+          TECHOS_GPG_KEY_ID: ${{ vars.TECHOS_GPG_KEY_ID }}
+        run: sh scripts/sign-apt-repo.sh
 
       - name: Upload APT repository
         uses: actions/upload-pages-artifact@v3

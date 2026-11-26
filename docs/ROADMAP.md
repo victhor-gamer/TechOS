@@ -1,54 +1,57 @@
-TechOS Roadmap
+# TechOS Roadmap
 
-O planejamento oficial do desenvolvimento do TechOS.
+Development plan for the TechOS project.
 
-TechOS 1.0 Unstable
+## TechOS 1.0 Unstable
 
-1. Fundação
+### 1. Foundation
+- [x] Create the GitHub repository
+- [x] Add initial project documentation
+- [x] Establish the initial source and package directory structure
+- [x] Select Debian as the base
+- [x] Select AMD64 (x86_64) as the first target architecture
+- [x] Select Cinnamon as the planned desktop environment
 
-- [x] Repositório no GitHub
-- [x] Documentação inicial
-- [ ] Estrutura do projeto
-- [ ] Identidade visual oficial
+### 2. Desktop identity
+- [ ] Define the official TechOS visual identity
+- [ ] Create the Frutiger Aero-inspired desktop theme
+- [ ] Create original icons and wallpapers
+- [ ] Customize the login experience
 
-2. Interface
+### 3. Original applications
+- [x] Create the first TechOS Welcome prototype
+- [ ] Integrate TechOS Welcome with the desktop session
+- [ ] Develop TechOS Center
+- [ ] Develop TechOS Store
+- [ ] Develop TechOS Update
+- [ ] Develop TechOS Info
 
-- [ ] Personalização do Cinnamon
-- [ ] Tema Frutiger Aero
-- [ ] Ícones próprios
-- [ ] Wallpapers oficiais
-- [ ] Tela de login personalizada
+### 4. System engineering
+- [x] Add an initial Debian package build script
+- [ ] Define the Debian release used as the base
+- [ ] Configure the default package selection
+- [ ] Add automated tests and build validation
+- [ ] Test packages in a clean Debian AMD64 virtual machine
 
-3. Aplicativos próprios
+### 5. Distribution
+- [ ] Implement the complete ISO build system
+- [ ] Create a bootable AMD64 ISO
+- [ ] Test boot and installation in a virtual machine
+- [ ] Publish checksums and release notes
+- [ ] Publish the first experimental release
 
-- [ ] TechOS Welcome
-- [ ] TechOS Center
-- [ ] TechOS Store
-- [ ] TechOS Update
-- [ ] TechOS Info
+## Future goals
 
-4. Sistema
+- Create an official TechOS APT repository
+- Develop additional original system tools
+- Evaluate support for other architectures
+- Improve performance, accessibility, and usability
 
-- [ ] Configurar pacotes padrão
-- [ ] Criar scripts próprios
-- [ ] Configurar serviços
-- [ ] Testar estabilidade
+## Current status
 
-5. Distribuição
+TechOS is in early development. The Welcome application is a prototype; the complete operating system, installer, and ISO are not yet available.
 
-- [ ] Criar imagem ISO
-- [ ] Testar em máquina virtual
-- [ ] Documentar instalação
-- [ ] Publicar primeira versão de testes
-
-Futuro
-
-- Repositório próprio de pacotes
-- Ferramentas exclusivas
-- Melhorias de desempenho
-- Novas versões do TechOS
-
-Status: Em desenvolvimento
-Base: Debian
-Ambiente gráfico: Cinnamon
-Versão: 1.0 Unstable
+- Base: Debian
+- Primary architecture: AMD64 (x86_64)
+- Planned desktop: Cinnamon
+- Version: 1.0 Unstable

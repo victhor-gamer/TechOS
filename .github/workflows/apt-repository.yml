@@ -1,4 +1,4 @@
-name: Build and publish TechOS APT repository
+name: Build TechOS APT repository
 
 on:
   push:
@@ -8,18 +8,11 @@ on:
       - "packages/**"
       - "scripts/build-deb.sh"
       - "scripts/build-apt-repo.sh"
-      - "scripts/sign-apt-repo.sh"
       - ".github/workflows/apt-repository.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
 
 jobs:
   build:
@@ -31,33 +24,18 @@ jobs:
       - name: Install packaging tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y dpkg-dev python3-tk gnupg
+          sudo apt-get install -y dpkg-dev python3-tk
 
       - name: Build TechOS Welcome package
         run: sh scripts/build-deb.sh
 
-      - name: Generate APT repository
+      - name: Generate unsigned APT repository
         run: sh scripts/build-apt-repo.sh
 
-      - name: Sign APT repository
-        env:
-          TECHOS_GPG_PRIVATE_KEY: ${{ secrets.TECHOS_GPG_PRIVATE_KEY }}
-          TECHOS_GPG_PASSPHRASE: ${{ secrets.TECHOS_GPG_PASSPHRASE }}
-          TECHOS_GPG_KEY_ID: ${{ vars.TECHOS_GPG_KEY_ID }}
-        run: sh scripts/sign-apt-repo.sh
-
-      - name: Upload APT repository
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload unsigned repository for offline signing
+        uses: actions/upload-artifact@v4
         with:
-          path: public
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          name: techos-apt-unsigned
+          path: public/
+          if-no-files-found: error
+          retention-days: 7
